@@ -1,0 +1,19 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use work.all;
+
+	entity fulladder_p1 is
+			port(a, b, cin: in std_logic;
+					s: out std_logic_vector(3 downto 0);
+					cout: out std_logic);
+	end  fulladder_p1;
+	
+
+	architecture logica of lab06 is
+		signal soma: std_logic_vector (1 downto 0);
+
+			begin
+				soma(0) <= a XOR b XOR cin;
+				soma(1) <= (a AND b) OR (a AND cin) OR (b AND cin);
+		
+	end logica;
