@@ -1,0 +1,32 @@
+library ieee;
+USE ieee.std_logic_1164.all;
+use work.pkg.all;
+
+ENTITY lab09_comparador is
+	
+	port (x,y: in std_logic_vector(3 downto 0);
+				Equ,Grt,Lst: out std_logic
+				);
+END entity lab09_comparador;
+
+ARCHITECTURE lab09_arc OF lab09_comparador is
+		
+		SIGNAL i: std_logic_vector(3 downto 0);
+		signal Equ2: std_logic;
+		signal Grt2: std_logic;
+
+			begin
+
+			i(3) <= x(3) XNOR y(3);
+			i(2) <= x(2) XNOR y(2);
+			i(1) <= x(1) XNOR y(1);
+			i(0) <= x(0) XNOR y(0);
+			Equ2 <= i(0) and i(1) and i(2) and i(3);
+			Grt2 <= (x(3) and not y(3)) OR (i(3) and x(2) and not y(2)) OR (i(3) and i(2) and x(1) and not y(1))
+			OR (i(3) and i(2) and i(1) and x(0) and not y(0));
+			
+			Equ <=Equ2;
+			Grt<=Grt2;
+			Lst <= Equ2 NOR Grt2;
+			
+			END architecture lab09_arc;

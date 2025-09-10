@@ -1,0 +1,23 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use work.pkg.all;
+
+	entity multiplicador is
+		port( a,b: in std_logic_vector(1 downto 0);
+				m: out std_logic_vector(3 downto 0)
+				);
+	end multiplicador;
+	
+	architecture logic of multiplicador is
+		signal soma: std_logic_vector(3 downto 0);
+		signal pp: std_logic_vector(2 downto 0);
+		signal c: std_logic;
+		
+		soma(0)<=(a(0) and b(0));
+		pp(0)<=(a(0) and b(1));
+		pp(1)<=(a(1) and b(0));
+		pp(2)<=(a(1) and b(1));
+		
+		s01: fulladder port map(pp(0),pp(1),'0',soma(1),c);
+		s02: fulladder port map (pp(3),c,'0',soma(2),soma(3));
+		

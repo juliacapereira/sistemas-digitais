@@ -1,0 +1,10 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use work.pkg.all;
+
+	entity principal is
+		
+		port (SW: in std_logic_vector(10 downto 0);
+				HEX0, HEX2, HEX4: out std_logic;
+				LDR: out std_logic_vector(5 downto 0);
+				
